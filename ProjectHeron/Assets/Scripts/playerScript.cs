@@ -12,24 +12,29 @@ public class playerScript : MonoBehaviour {
     float oxygenRegen;
     [SerializeField]
     float oxygenLost;
+
+    private float oxygenBarLenght;
+
 	void Start () {
         oxygenBarObject = GameObject.Find("oxygenBar");
         if(oxygenBarObject)
         oxygenBar = oxygenBarObject.GetComponent<Image>();
-	}
+        oxygenBarLenght = oxygenBar.rectTransform.sizeDelta.y;
+
+    }
 	
 	void Update () {
         if (oxygenBar)
         {
             if (oxygenAttacehd)
             {
-                if(oxygenBar.rectTransform.sizeDelta.x < 200)
-                    oxygenBar.rectTransform.sizeDelta = new Vector2(oxygenBar.rectTransform.sizeDelta.x + oxygenRegen, oxygenBar.rectTransform.sizeDelta.y);
+                if(oxygenBar.rectTransform.sizeDelta.y < oxygenBarLenght)
+                    oxygenBar.rectTransform.sizeDelta = new Vector2(oxygenBar.rectTransform.sizeDelta.x, oxygenBar.rectTransform.sizeDelta.y + oxygenRegen);
             }
             else
             {
-                if (oxygenBar.rectTransform.sizeDelta.x > 0)
-                    oxygenBar.rectTransform.sizeDelta = new Vector2(oxygenBar.rectTransform.sizeDelta.x - oxygenLost, oxygenBar.rectTransform.sizeDelta.y);
+                if (oxygenBar.rectTransform.sizeDelta.y > 0)
+                    oxygenBar.rectTransform.sizeDelta = new Vector2(oxygenBar.rectTransform.sizeDelta.x, oxygenBar.rectTransform.sizeDelta.y - oxygenLost);
             }
         }
 	}
