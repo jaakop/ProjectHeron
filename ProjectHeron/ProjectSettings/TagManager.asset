@@ -42,3 +42,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Prop
+    uniqueID: 1691896399
+    locked: 0
+  - name: PLayer
+    uniqueID: 2114376163
+    locked: 0
