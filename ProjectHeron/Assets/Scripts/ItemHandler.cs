@@ -16,15 +16,8 @@ public class ItemHandler : MonoBehaviour {
         Vector2 cursorPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         if (isHold)
         {
-            if (cursorPosition.x - transform.position.x > 0.025 || cursorPosition.x - transform.position.x < -0.025)
-            {
-                if (cursorPosition.y - transform.position.y > 0.025 || cursorPosition.y - transform.position.y < -0.025)
-                {
-                    Vector2 vector = new Vector2(cursorPosition.x - transform.position.x, cursorPosition.y - transform.position.y);
-                    vector.Normalize();
-                    transform.position = new Vector2(transform.position.x + vector.x * moveSpeed, transform.position.y + vector.y * moveSpeed);
-                }
-            }
+            Vector2 vector = Vector2.Lerp(transform.position, cursorPosition, moveSpeed * Time.deltaTime);
+            transform.position = vector;
         }
         if (Input.GetMouseButtonDown(0) && insideObject)
         {
