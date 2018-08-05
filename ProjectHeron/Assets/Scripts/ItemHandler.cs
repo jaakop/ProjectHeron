@@ -6,9 +6,14 @@ public class ItemHandler : MonoBehaviour {
     private bool insideObject;
     [SerializeField]
     private float moveSpeed;
+
+    GameObject player;
+    playerScript playerScript;
 	// Use this for initialization
 	void Start () {
         isHold = false;
+        player = GameObject.FindGameObjectWithTag("Player");
+        playerScript = player.GetComponent<playerScript>();
 	}
 	
 	// Update is called once per frame
@@ -43,4 +48,17 @@ public class ItemHandler : MonoBehaviour {
     {
         insideObject = false;
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.tag == "Player")
+            playerScript.highLighted = true;
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.tag == "Player")
+            playerScript.highLighted = false;
+    }
+
 }

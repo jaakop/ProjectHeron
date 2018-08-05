@@ -12,6 +12,12 @@ public class playerScript : MonoBehaviour {
     float oxygenRegen;
     [SerializeField]
     float oxygenLost;
+    [SerializeField]
+    private GameObject playerHighLight;
+
+    private Transform highLight;
+
+    public bool highLighted;
 
     private float oxygenBarLenght;
 
@@ -20,10 +26,18 @@ public class playerScript : MonoBehaviour {
         if(oxygenBarObject)
         oxygenBar = oxygenBarObject.GetComponent<Image>();
         oxygenBarLenght = oxygenBar.rectTransform.sizeDelta.y;
-
+        highLighted = false;
     }
 	
 	void Update () {
+        if (highLighted)
+        {
+            playerHighLight.SetActive(true);
+        }
+        else
+        {
+            playerHighLight.SetActive(false);
+        }
         if (oxygenBar)
         {
             if (oxygenAttacehd)
