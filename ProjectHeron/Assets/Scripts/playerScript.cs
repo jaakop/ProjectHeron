@@ -61,12 +61,12 @@ public class playerScript : MonoBehaviour {
         {
             if (cursorInsidePlayer)
             {
-                item.GetComponent<ItemHandler>().Snap(transform.position, true);
+                item.GetComponent<ItemHandler>().Snap(transform.position, true, gameObject);
                 highLighted = true;
             }
             else
             {
-                item.GetComponent<ItemHandler>().Snap(transform.position, false);
+                item.GetComponent<ItemHandler>().Snap(transform.position, false, gameObject);
                 highLighted = false;
             }
         }

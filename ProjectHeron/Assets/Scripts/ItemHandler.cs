@@ -12,13 +12,14 @@ public class ItemHandler : MonoBehaviour {
     [SerializeField]
     private float placementSpeed;
 
-    GameObject player;
-
-    playerScript playerScript;
-
     private bool snapping;
 
     Vector2 targetPosition;
+
+    GameObject snappingGameObject;
+
+    GameObject player;
+    playerScript playerScript;
 
     void Start () {
         isHold = false;
@@ -58,11 +59,15 @@ public class ItemHandler : MonoBehaviour {
         if (Input.GetMouseButtonDown(0) && insideObject)
         {
             if (!isHold)
+            {
                 isHold = true;
-            else
-                isHold = false;
+            }
         }
-	}
+        else if (Input.GetMouseButtonDown(0))
+        {
+            isHold = false;
+        }
+    }
     private void OnMouseEnter()
     {
         insideObject = true;
@@ -73,9 +78,10 @@ public class ItemHandler : MonoBehaviour {
         insideObject = false;
     }
 
-    public void Snap(Vector2 snappingPosition, bool isSnapping)
+    public void Snap(Vector2 snappingPosition, bool isSnapping, GameObject snappingObject)
     {
         snapping = isSnapping;
+        snappingGameObject = snappingObject;
         if(isSnapping)
             targetPosition = snappingPosition;
         else
