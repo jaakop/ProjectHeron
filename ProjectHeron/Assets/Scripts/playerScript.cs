@@ -35,8 +35,6 @@ public class playerScript : MonoBehaviour {
     }
 	
 	void Update () {
-        Debug.Log(cursorInsidePlayer);
-        Debug.Log(highLighted);
         if (highLighted)
         {
             playerHighLight.SetActive(true);
@@ -77,12 +75,10 @@ public class playerScript : MonoBehaviour {
 
     private void OnMouseEnter()
     {
-        Debug.Log("MouseEntered");
         cursorInsidePlayer = true;
     }
     private void OnMouseExit()
     {
-        Debug.Log("MouseExited");
         cursorInsidePlayer = false;
     }
 
