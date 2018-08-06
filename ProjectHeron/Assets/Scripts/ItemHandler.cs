@@ -31,9 +31,9 @@ public class ItemHandler : MonoBehaviour {
         if (isHold)
         {
             playerScript.item = gameObject;
-            GetComponent<Collider2D>().enabled = false;
             if(snapping)
             {
+                GetComponent<Collider2D>().enabled = false;
                 Vector2 vector = Vector2.Lerp(transform.position, targetPosition, placementSpeed * Time.deltaTime);
                 transform.position = vector;
                 Color tmp = GetComponent<SpriteRenderer>().color;
@@ -43,6 +43,7 @@ public class ItemHandler : MonoBehaviour {
             }
             else
             {
+                GetComponent<Collider2D>().enabled = true;
                 Vector2 vector = Vector2.Lerp(transform.position, targetPosition, moveSpeed * Time.deltaTime);
                 transform.position = vector;
                 Color tmp = GetComponent<SpriteRenderer>().color;
