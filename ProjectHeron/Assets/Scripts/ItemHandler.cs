@@ -3,26 +3,56 @@
 public class ItemHandler : MonoBehaviour {
 
     public bool isHold;
+
     private bool insideObject;
+
     [SerializeField]
     private float moveSpeed;
 
+    [SerializeField]
+    private float placementSpeed;
+
     GameObject player;
+
     playerScript playerScript;
-	// Use this for initialization
-	void Start () {
+
+    private bool snapping;
+
+    Vector2 targetPosition;
+
+    void Start () {
         isHold = false;
+        snapping = false;
         player = GameObject.FindGameObjectWithTag("Player");
         playerScript = player.GetComponent<playerScript>();
 	}
-	
-	// Update is called once per frame
+
 	void Update () {
-        Vector2 cursorPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         if (isHold)
         {
-            Vector2 vector = Vector2.Lerp(transform.position, cursorPosition, moveSpeed * Time.deltaTime);
-            transform.position = vector;
+            playerScript.item = gameObject;
+            GetComponent<Collider2D>().enabled = false;
+            if(snapping)
+            {
+                Vector2 vector = Vector2.Lerp(transform.position, targetPosition, placementSpeed * Time.deltaTime);
+                transform.position = vector;
+                Color tmp = GetComponent<SpriteRenderer>().color;
+                tmp.a = 0.5f;
+                GetComponent<SpriteRenderer>().color = tmp;
+
+            }
+            else
+            {
+                Vector2 vector = Vector2.Lerp(transform.position, targetPosition, moveSpeed * Time.deltaTime);
+                transform.position = vector;
+                Color tmp = GetComponent<SpriteRenderer>().color;
+                tmp.a = 1f;
+                GetComponent<SpriteRenderer>().color = tmp;
+            }
+        }
+        else
+        {
+            GetComponent<Collider2D>().enabled = true;
         }
         if (Input.GetMouseButtonDown(0) && insideObject)
         {
@@ -42,16 +72,12 @@ public class ItemHandler : MonoBehaviour {
         insideObject = false;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    public void Snap(Vector2 snappingPosition, bool isSnapping)
     {
-        if(collision.tag == "Player")
-            playerScript.highLighted = true;
+        snapping = isSnapping;
+        if(isSnapping)
+            targetPosition = snappingPosition;
+        else
+            targetPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
     }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.tag == "Player")
-            playerScript.highLighted = false;
-    }
-
 }

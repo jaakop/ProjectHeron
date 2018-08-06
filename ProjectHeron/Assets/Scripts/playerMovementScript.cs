@@ -15,10 +15,11 @@ public class playerMovementScript : MonoBehaviour {
     [SerializeField]
     KeyCode right;
 
-    void Start () {
+    void Start()
+    {
         rb = gameObject.GetComponent<Rigidbody2D>();
-	}
-	
+    }
+
 	void FixedUpdate () {
 
         if (Input.GetKey(up))
