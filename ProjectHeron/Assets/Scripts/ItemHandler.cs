@@ -40,7 +40,11 @@ public class ItemHandler : MonoBehaviour {
                 Color tmp = GetComponent<SpriteRenderer>().color;
                 tmp.a = 0.5f;
                 GetComponent<SpriteRenderer>().color = tmp;
-
+                if (Input.GetMouseButtonDown(0))
+                {
+                    snappingGameObject.GetComponent<InvetoryHandler>().AddItem(gameObject);
+                    Destroy(gameObject);
+                }
             }
             else
             {
@@ -62,10 +66,10 @@ public class ItemHandler : MonoBehaviour {
             {
                 isHold = true;
             }
-        }
-        else if (Input.GetMouseButtonDown(0))
-        {
-            isHold = false;
+            else
+            {
+                isHold = false;
+            }
         }
     }
     private void OnMouseEnter()

@@ -23,6 +23,8 @@ public class playerScript : MonoBehaviour {
 
     public bool cursorInsidePlayer;
 
+    public bool itemReleased;
+
     public GameObject item;
 
 	void Start () {
@@ -32,6 +34,7 @@ public class playerScript : MonoBehaviour {
         oxygenBarLenght = oxygenBar.rectTransform.sizeDelta.y;
         highLighted = false;
         cursorInsidePlayer = false;
+        itemReleased = false;
     }
 	
 	void Update () {
