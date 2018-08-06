@@ -20,10 +20,14 @@ public class InvetoryHandler : MonoBehaviour {
     {
         for(int i = 0; i < inventorySlots.Length; i++)
         {
-            Debug.Log(gameObject.GetComponent<SpriteRenderer>().sprite);
-            Debug.Log("!");
-            inventorySlots[i].GetComponent<Image>().sprite = item.GetComponent<SpriteRenderer>().sprite;
-            inventorySlots[i].GetComponent<Image>().color = item.GetComponent<SpriteRenderer>().color;
+            if(inventorySlots[i].GetComponent<inventorySlotHnadler>().isUsed == false)
+            {
+                inventorySlots[i].GetComponent<Image>().sprite = item.GetComponent<SpriteRenderer>().sprite;
+                inventorySlots[i].GetComponent<Image>().color = item.GetComponent<SpriteRenderer>().color;
+                inventorySlots[i].GetComponent<inventorySlotHnadler>().isUsed = true;
+                break;
+            }
+
         }
     }
 }
