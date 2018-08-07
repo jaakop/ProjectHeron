@@ -16,7 +16,7 @@ public class InvetoryHandler : MonoBehaviour {
 		
 	}
 
-    public void AddItem(GameObject item, GameObject itemPrefab)
+    public void AddItem(GameObject item, int itemPrefab)
     {
         for(int i = 0; i < inventorySlots.Length; i++)
         {

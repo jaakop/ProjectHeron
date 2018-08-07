@@ -13,7 +13,7 @@ public class ItemHandler : MonoBehaviour {
     private float placementSpeed;
 
     [SerializeField]
-    GameObject itemPrefab;
+    int itemPrefab;
 
     private bool snapping;
 
@@ -25,7 +25,6 @@ public class ItemHandler : MonoBehaviour {
     playerScript playerScript;
 
     void Start () {
-        isHold = false;
         snapping = false;
         player = GameObject.FindGameObjectWithTag("Player");
         playerScript = player.GetComponent<playerScript>();

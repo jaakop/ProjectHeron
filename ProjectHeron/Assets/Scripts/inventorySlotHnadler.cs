@@ -16,7 +16,7 @@ public class inventorySlotHnadler : MonoBehaviour, IPointerEnterHandler, IPointe
     private Color defaultColor;
 
     [SerializeField]
-    GameObject slotPrefab;
+    int slotPrefab;
 
     bool cursorInsideSlot;
 
@@ -35,14 +35,16 @@ public class inventorySlotHnadler : MonoBehaviour, IPointerEnterHandler, IPointe
         {
             gameObject.GetComponent<Image>().sprite = defaultImage;
             gameObject.GetComponent<Image>().color = defaultColor;
-            GameObject newGameObject = Instantiate(slotPrefab, cursorPosition3D, Quaternion.identity);
+            GameObject itemCatalogue = GameObject.Find("GameHandler");
+            GameObject itemPrefab = itemCatalogue.GetComponent<ItemCatalog>().itemPrefabs[slotPrefab]; ;
+            GameObject newGameObject = Instantiate(itemPrefab, cursorPosition3D, Quaternion.identity);
             newGameObject.GetComponent<ItemHandler>().isHold = true;
             isUsed = false;
         }
 		
 	}
 
-    public void AddItemToSlot(GameObject item, GameObject prefab)
+    public void AddItemToSlot(GameObject item, int prefab)
     {
         slotPrefab = prefab;
         gameObject.GetComponent<Image>().sprite = item.GetComponent<SpriteRenderer>().sprite;

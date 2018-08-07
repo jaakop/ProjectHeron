@@ -78,10 +78,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 175c67eb82514fa4d9b78559dd07c65c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isHold: 1
+  isHold: 0
   moveSpeed: 2.5
   placementSpeed: 10
-  itemPrefab: {fileID: 1266795739389420}
+  itemPrefab: 0
 --- !u!212 &212723043977710236
 SpriteRenderer:
   m_ObjectHideFlags: 1
