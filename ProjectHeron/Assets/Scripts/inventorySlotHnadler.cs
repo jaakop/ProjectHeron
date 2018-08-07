@@ -33,13 +33,16 @@ public class inventorySlotHnadler : MonoBehaviour, IPointerEnterHandler, IPointe
         Vector3 cursorPosition3D = new Vector3(cursorPosition.x, cursorPosition.y, 0);
         if (Input.GetMouseButtonDown(0) && cursorInsideSlot)
         {
-            gameObject.GetComponent<Image>().sprite = defaultImage;
-            gameObject.GetComponent<Image>().color = defaultColor;
-            GameObject itemCatalogue = GameObject.Find("GameHandler");
-            GameObject itemPrefab = itemCatalogue.GetComponent<ItemCatalog>().itemPrefabs[slotPrefab]; ;
-            GameObject newGameObject = Instantiate(itemPrefab, cursorPosition3D, Quaternion.identity);
-            newGameObject.GetComponent<ItemHandler>().isHold = true;
-            isUsed = false;
+            if (isUsed)
+            {
+                gameObject.GetComponent<Image>().sprite = defaultImage;
+                gameObject.GetComponent<Image>().color = defaultColor;
+                GameObject itemCatalogue = GameObject.Find("GameHandler");
+                GameObject itemPrefab = itemCatalogue.GetComponent<ItemCatalog>().itemPrefabs[slotPrefab]; ;
+                GameObject newGameObject = Instantiate(itemPrefab, cursorPosition3D, Quaternion.identity);
+                newGameObject.GetComponent<ItemHandler>().isHold = true;
+                isUsed = false;
+            }
         }
 		
 	}
@@ -48,7 +51,9 @@ public class inventorySlotHnadler : MonoBehaviour, IPointerEnterHandler, IPointe
     {
         slotPrefab = prefab;
         gameObject.GetComponent<Image>().sprite = item.GetComponent<SpriteRenderer>().sprite;
-        gameObject.GetComponent<Image>().color = item.GetComponent<SpriteRenderer>().color;
+        Color itemColor = item.GetComponent<SpriteRenderer>().color;
+        itemColor.a = 1;
+        gameObject.GetComponent<Image>().color = itemColor;
         isUsed = true;
     }
 
