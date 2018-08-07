@@ -12,6 +12,9 @@ public class ItemHandler : MonoBehaviour {
     [SerializeField]
     private float placementSpeed;
 
+    [SerializeField]
+    GameObject itemPrefab;
+
     private bool snapping;
 
     Vector2 targetPosition;
@@ -42,7 +45,8 @@ public class ItemHandler : MonoBehaviour {
                 GetComponent<SpriteRenderer>().color = tmp;
                 if (Input.GetMouseButtonDown(0))
                 {
-                    snappingGameObject.GetComponent<InvetoryHandler>().AddItem(gameObject);
+                    
+                    snappingGameObject.GetComponent<InvetoryHandler>().AddItem(gameObject,  itemPrefab);
                     Destroy(gameObject);
                 }
             }

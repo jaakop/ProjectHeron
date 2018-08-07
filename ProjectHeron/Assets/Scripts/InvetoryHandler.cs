@@ -16,15 +16,13 @@ public class InvetoryHandler : MonoBehaviour {
 		
 	}
 
-    public void AddItem(GameObject item)
+    public void AddItem(GameObject item, GameObject itemPrefab)
     {
         for(int i = 0; i < inventorySlots.Length; i++)
         {
             if(inventorySlots[i].GetComponent<inventorySlotHnadler>().isUsed == false)
             {
-                inventorySlots[i].GetComponent<Image>().sprite = item.GetComponent<SpriteRenderer>().sprite;
-                inventorySlots[i].GetComponent<Image>().color = item.GetComponent<SpriteRenderer>().color;
-                inventorySlots[i].GetComponent<inventorySlotHnadler>().isUsed = true;
+                inventorySlots[i].GetComponent<inventorySlotHnadler>().AddItemToSlot(item, itemPrefab);
                 break;
             }
 
