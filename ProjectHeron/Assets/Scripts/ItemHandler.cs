@@ -48,6 +48,7 @@ public class ItemHandler : MonoBehaviour {
                 {
                     
                     snappingGameObject.GetComponent<InvetoryHandler>().AddItem(gameObject,  itemPrefab);
+                    if(snappingGameObject.GetComponent<InvetoryHandler>().itemsInInventory < snappingGameObject.GetComponent<InvetoryHandler>().numberOfInventorySlots++)
                     Destroy(gameObject);
                 }
             }
