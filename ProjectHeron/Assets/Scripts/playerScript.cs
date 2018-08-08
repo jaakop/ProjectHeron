@@ -23,9 +23,10 @@ public class playerScript : MonoBehaviour {
 
     public bool cursorInsidePlayer;
 
-    public bool itemReleased;
+    public bool isHolding;
 
     public GameObject item;
+    public int itemIndex;
 
 	void Start () {
         oxygenBarObject = GameObject.Find("oxygenBar");
@@ -34,7 +35,7 @@ public class playerScript : MonoBehaviour {
         oxygenBarLenght = oxygenBar.rectTransform.sizeDelta.y;
         highLighted = false;
         cursorInsidePlayer = false;
-        itemReleased = false;
+        isHolding = false;
     }
 	
 	void Update () {

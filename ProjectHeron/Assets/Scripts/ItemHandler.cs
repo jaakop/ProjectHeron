@@ -31,9 +31,11 @@ public class ItemHandler : MonoBehaviour {
 	}
 
 	void Update () {
+        playerScript.isHolding = isHold;
         if (isHold)
         {
             playerScript.item = gameObject;
+            playerScript.itemIndex = itemPrefab;
             if(snapping)
             {
                 GetComponent<Collider2D>().enabled = false;

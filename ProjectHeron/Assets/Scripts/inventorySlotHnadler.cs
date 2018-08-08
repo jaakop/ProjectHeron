@@ -20,10 +20,16 @@ public class inventorySlotHnadler : MonoBehaviour, IPointerEnterHandler, IPointe
 
     bool cursorInsideSlot;
 
+    GameObject player;
+    playerScript playerScript;
+
+
 	// Use this for initialization
 	void Start () {
         isUsed = false;
         cursorInsideSlot = false;
+        player = GameObject.Find("Player");
+        playerScript = player.GetComponent<playerScript>();
 	}
 	
 	// Update is called once per frame
@@ -42,6 +48,15 @@ public class inventorySlotHnadler : MonoBehaviour, IPointerEnterHandler, IPointe
                 GameObject newGameObject = Instantiate(itemPrefab, cursorPosition3D, Quaternion.identity);
                 newGameObject.GetComponent<ItemHandler>().isHold = true;
                 isUsed = false;
+            }
+            else
+            {
+                if (playerScript.isHolding)
+                {
+                    AddItemToSlot(playerScript.item, playerScript.itemIndex);
+                    isUsed = true;
+                    Destroy(playerScript.item);
+                }
             }
         }
 		
