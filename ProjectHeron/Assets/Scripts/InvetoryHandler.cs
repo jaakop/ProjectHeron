@@ -24,15 +24,23 @@ public class InvetoryHandler : MonoBehaviour {
 
     public void AddItem(GameObject item, int itemPrefab)
     {
-        for(int i = 0; i < inventorySlots.Length; i++)
+        if (itemsInInventory == inventorySlots.Length)
         {
-            if (inventorySlots[i].GetComponent<inventorySlotHnadler>().isUsed == false)
+            Debug.Log("This inventory is full");
+        }
+        else
+        {
+            for (int i = 0; i < inventorySlots.Length; i++)
             {
-                inventorySlots[i].GetComponent<inventorySlotHnadler>().AddItemToSlot(item, itemPrefab);
-                itemsInInventory++;
-                break;
-            }
+                if (inventorySlots[i].GetComponent<inventorySlotHnadler>().isUsed == false)
+                {
+                    inventorySlots[i].GetComponent<inventorySlotHnadler>().AddItemToSlot(item, itemPrefab);
+                    itemsInInventory++;
+                    Destroy(item);
+                    break;
+                }
 
+            }
         }
     }
 }
