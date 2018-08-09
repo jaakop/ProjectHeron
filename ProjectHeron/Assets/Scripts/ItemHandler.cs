@@ -36,7 +36,7 @@ public class ItemHandler : MonoBehaviour {
         {
             playerScript.item = gameObject;
             playerScript.itemIndex = itemPrefab;
-            if(snapping)
+            if (snapping)
             {
                 GetComponent<Collider2D>().enabled = false;
                 Vector2 vector = Vector2.Lerp(transform.position, targetPosition, placementSpeed * Time.deltaTime);
@@ -48,6 +48,7 @@ public class ItemHandler : MonoBehaviour {
                 {
                     
                     snappingGameObject.GetComponent<InvetoryHandler>().AddItem(gameObject,  itemPrefab);
+                    isHold = false;
                 }
             }
             else
@@ -66,7 +67,7 @@ public class ItemHandler : MonoBehaviour {
         }
         if (Input.GetMouseButtonDown(0) && insideObject)
         {
-            if (!isHold)
+            if (!isHold && !playerScript.item)
             {
                 isHold = true;
             }

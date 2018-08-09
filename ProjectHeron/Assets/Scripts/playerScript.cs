@@ -73,6 +73,8 @@ public class playerScript : MonoBehaviour {
                 item.GetComponent<ItemHandler>().Snap(transform.position, false, gameObject);
                 highLighted = false;
             }
+            if (!item.GetComponent<ItemHandler>().isHold)
+                item = null;
         }
         else
         {
