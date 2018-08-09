@@ -40,7 +40,7 @@ public class inventorySlotHnadler : MonoBehaviour, IPointerEnterHandler, IPointe
         Vector3 cursorPosition3D = new Vector3(cursorPosition.x, cursorPosition.y, 0);
         if (Input.GetMouseButtonDown(0) && cursorInsideSlot)
         {
-            if (isUsed)
+            if (isUsed && playerScript.isHolding == false)
             {
                 gameObject.GetComponent<Image>().sprite = defaultImage;
                 gameObject.GetComponent<Image>().color = defaultColor;
@@ -55,8 +55,16 @@ public class inventorySlotHnadler : MonoBehaviour, IPointerEnterHandler, IPointe
             {
                 if (playerScript.isHolding)
                 {
-                    inventory.GetComponent<InvetoryHandler>().AddItem(playerScript.item, playerScript.itemIndex);
-                    isUsed = true;
+                    if (gameObject.GetComponent<inventorySlotHnadler>().isUsed)
+                    {
+                        Debug.Log("This inventory slot is full");
+                    }
+                    else { 
+                        AddItemToSlot(playerScript.item, playerScript.itemIndex);
+                        Destroy(playerScript.item);
+                        isUsed = true;
+                        inventory.GetComponent<InvetoryHandler>().itemsInInventory++;
+                    }
                 }
             }
         }
