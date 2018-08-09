@@ -72,7 +72,7 @@ public class ItemHandler : MonoBehaviour {
             }
             else
             {
-                isHold = false;
+                isHold = false; 
             }
         }
     }

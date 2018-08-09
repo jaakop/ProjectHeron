@@ -2,22 +2,26 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BaseScript : MonoBehaviour {
+public class BaseScript : MonoBehaviour
+{
 
     public GameObject player;
     private LineRenderer lr;
     [SerializeField]
     private float lineDistance;
     playerScript playerScript;
-	void Start () {
+    void Start()
+    {
 
         player = GameObject.FindGameObjectWithTag("Player");
         lr = gameObject.GetComponent<LineRenderer>();
         playerScript = player.GetComponent<playerScript>();
-	}
-	
-	void Update () {
-        if (player) {
+    }
+
+    void Update()
+    {
+        if (player)
+        {
             float distance = Vector2.Distance(player.transform.position, transform.position);
             if (distance < lineDistance)
             {
@@ -32,5 +36,5 @@ public class BaseScript : MonoBehaviour {
                 playerScript.oxygenAttacehd = false;
             }
         }
-	}
+    }
 }

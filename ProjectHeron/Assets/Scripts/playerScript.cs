@@ -74,6 +74,10 @@ public class playerScript : MonoBehaviour {
                 highLighted = false;
             }
         }
+        else
+        {
+            highLighted = false;
+        }
 
 	}   
 

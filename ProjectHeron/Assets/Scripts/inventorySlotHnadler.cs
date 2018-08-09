@@ -24,7 +24,8 @@ public class inventorySlotHnadler : MonoBehaviour, IPointerEnterHandler, IPointe
     playerScript playerScript;
     [SerializeField]
     GameObject inventory;
-    // Use this for initialization
+
+
     void Start()
     {
         isUsed = false;
@@ -33,7 +34,6 @@ public class inventorySlotHnadler : MonoBehaviour, IPointerEnterHandler, IPointe
         playerScript = player.GetComponent<playerScript>();
         Debug.Log(inventory);
     }
-	// Update is called once per frame
 	void Update () { 
 
         Vector2 cursorPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
