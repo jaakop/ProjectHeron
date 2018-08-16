@@ -91,5 +91,4 @@ public class playerScript : MonoBehaviour {
     {
         cursorInsidePlayer = false;
     }
-
 }

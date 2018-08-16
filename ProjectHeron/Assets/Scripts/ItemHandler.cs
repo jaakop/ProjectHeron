@@ -64,6 +64,9 @@ public class ItemHandler : MonoBehaviour {
         else
         {
             GetComponent<Collider2D>().enabled = true;
+            Color tmp = GetComponent<SpriteRenderer>().color;
+            tmp.a = 1f;
+            GetComponent<SpriteRenderer>().color = tmp;
         }
         if (Input.GetMouseButtonDown(0) && insideObject)
         {

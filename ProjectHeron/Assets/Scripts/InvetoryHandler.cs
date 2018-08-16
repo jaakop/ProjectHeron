@@ -15,11 +15,9 @@ public class InvetoryHandler : MonoBehaviour {
 	void Start () {
         itemsInInventory = 0;
         numberOfInventorySlots = inventorySlots.Length;
-        Debug.Log(numberOfInventorySlots);
 	}
 	
 	void Update () {
-        Debug.Log(itemsInInventory);
 	}
 
     public void AddItem(GameObject item, int itemPrefab)
